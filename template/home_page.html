@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EcoData</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #C5E4C2;
+			font-family: Arial, sans-serif;
+		}
+		header {
+			display: flex;
+			align-items: center;
+			background-color: #C5E4C2;
+			color: #0F5E00;
+			height: 60px;
+			padding-left: 20px;
+		}
+		header img {
+			height: 40px;
+			margin-right: 10px;
+		}
+		main {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 50px;
+		}
+		main h1 {
+			font-size: 36px;
+			margin-bottom: 20px;
+		}
+		main img {
+			width: 80%;
+			max-width: 800px;
+			margin-bottom: 20px;
+		}
+		main button {
+			background-color: #C5E4C2; /* Green */
+  			border: none;
+  			color: #0F5E00;
+  			padding: 15px 32px;
+  			text-align: center;
+  			text-decoration: none;
+  			display: inline-block;
+  			font-size: 16px;
+  			margin-bottom: 20px;
+  			cursor:pointer
+  		}
+  		main button:hover {
+  			background-color:#3e8e41
+  		}
+        main .btn_dropdown {
+            color: #0F5E00;
+            text-align: center;
+            display: inline-block;
+            padding: 15px 40px;
+            cursor: pointer;
+            letter-spacing: 2px;
+            position:relative;
+            overflow:hidden;
+            font-size: 16px;
+            margin: 0 20px
+        }
+
+        main .btn_dropdown:before {
+            content: "";
+            position: absolute;
+            width: 0;
+            background : #0F5E00;
+            left: 45%;
+            height: 2px;
+            top: 0;
+            transition: all .3s;
+            opacity: 0.7;
+        }
+
+        main .btn_dropdown:hover:before {
+            width: 100%;
+            left:0;
+        }
+
+  		main .dropdown {
+  			position:relative
+  		}
+  		main .dropdown-content {
+  			display:none; 
+  			position:absolute; 
+  			z-index:1; 
+  			min-width:auto; 
+  			right: 70px; 
+  			background-color:#C5E4C2; 
+  			border-radius:.25rem; 
+            border: 2px solid #0F5E00;
+  			padding:.5rem
+  		}
+  		main .dropdown:hover .dropdown-content {
+  			display:block
+  		}
+  		main .dropdown-content a {
+  			color:#0F5E00; 
+  			display:block; 
+  			padding:1rem .5rem; 
+  			text-decoration:none
+  		}
+  		main .dropdown-content a:hover {
+  			background-color:#BCDCBA
+  		}
+        
+        main .parallel_layout {
+  			display: flex;
+  			flex-direction: row;
+  			justify-content: center;
+  		}          
+        
+        footer{
+            position: fixed;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			background-color: #C5E4C2;
+			color: #0F5E00;
+			text-align: center;
+        }
+  		
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+</style>
+</head>
+<body>
+<header>
+<img src="logo.png" alt="EcoData logo">
+<h1>EcoData</h1>
+</header>
+
+<main>
+    <div class="parallel_layout">
+        <div class="dropdown">
+        <div class="btn_dropdown">Dropdown Button 1</div>
+        <div class="dropdown-content">
+        <a href="#">Dropdown Link 1</a>
+        <a href="#">Dropdown Link 2</a>
+        <a href="#">Dropdown Link 3</a>
+        </div>
+        </div>
+        
+        <div class="dropdown">
+        <div class="btn_dropdown">Dropdown Button 2</div>
+        <div class="dropdown-content">
+        <a href="#">Dropdown Link 1</a>
+        <a href="#">Dropdown Link 2</a>
+        <a href="#">Dropdown Link 3</a>
+        </div>
+        </div>
+        
+        <div class="dropdown">
+        <div class="btn_dropdown">Dropdown Button 3</div>
+        <div class="dropdown-content">
+        <a href="#">Dropdown Link 1</a>
+        <a href="#">Dropdown Link 2</a>
+        <a href="#">Dropdown Link 3</a>
+        </div>
+        </div>
+    </div>
+<br>
+<img src="https://via.placeholder.com/800x400.png?text=World+Map" alt="World Map">
+
+
+
+
+</main>
+
+</body>
+
+<footer>
+	<p>Copyright 2023 EcoData | Powered by Github Codespace</p>
+</footer>
+
+</html>
