@@ -4,7 +4,24 @@ import os
 # Print all columns
 pd.set_option('display.max_columns', None)
 
-def make_relative_data(category, file_name, treaty):
+def make_relative_data(category, file_name,header_row=1,end_year=2018):
+    treaties = [
+        "Basel Convention",
+        "CITES",
+        "Convention on Biological Diversity",
+        "Convention on Migratory Species",
+        "Kyoto \nProtocol",
+        "Montreal Protocol",
+        "Paris Agreement",
+        "Ramsar Convention",
+        "Rotterdam Convention",
+        "Stockholm Convention",
+        "UN Convention on the Law of the Sea",
+        "UN Convention to Combat Desertification",
+        "UN Framework Convention on Climate Change",
+        "World \nHeritage Convention"
+    ]
+
     # Get all files in data folder
     files = os.listdir('../data/'+ category )
     
@@ -14,29 +31,48 @@ def make_relative_data(category, file_name, treaty):
         raise ValueError(f"No file found matching {file_name}")
     
     # Read in file into a dataframe with the first row as the column names
-    climate_data = pd.read_csv(f'../data/{category}/{file}', header=1)
+    climate_data = pd.read_csv(f'../data/{category}/{file}', header=header_row)
     climate_data.columns.values[0] = "Country ID"
     # Make the second column name "Country"
     climate_data.columns.values[1] = "Country"   
     # Read in treaty data
-    treaty_data = pd.read_csv('../data/Governance/Governance.csv', usecols=['Country and area', treaty])
-    treaty_data = treaty_data.rename(columns={'Country and area': 'Country'})
-    
+    # With Country and area and all treaties in treaties
+    treaty_data = pd.read_csv('../data/Governance/Governance.csv', usecols=['Country and area'] + treaties)
+    treaty_data = treaty_data.rename(columns={'Country and area': 'Country','Kyoto \nProtocol': 'Kyoto Protocol','World \nHeritage Convention': 'World Heritage Convention'})
     # Merge climate data with treaty data on Country column
     climate_data = pd.merge(climate_data, treaty_data, on='Country', how='left')
-    climate_data = climate_data.rename(columns={treaty: f"Accepted {treaty}"})
 
-    for year in range(1990, 2019):
+    for year in range(1990, end_year+1):
         # Make column type float
         # Convert values of "..." to NaN
         climate_data[str(year)] = climate_data[str(year)].replace('...', None)
+        climate_data[str(year)] = climate_data[str(year)].replace('…', None)
         # Remove commas from values
         climate_data[str(year)] = climate_data[str(year)].str.replace(',', '')
         climate_data[str(year)] = climate_data[str(year)].astype(float)
         
-    for year in range(1990, 2018):
+
+    # ADD INTERPOLATION HERE
+    for year in range(1990, end_year):
         climate_data[f"{year} Percent Change"] = (climate_data[str(year+1)] - climate_data[str(year)]) / climate_data[str(year)] * 100
+    
+    # Write to csv
+    climate_data.to_csv(f'../data/{category}/{file_name[:-4]}_processed.csv', index=False)   
+    print(climate_data.head())
     return climate_data
 
-make_relative_data("Air and Climate","CO2_Emissions.csv","Paris Agreement")
 
+# This should work for Air and Climate, some Energy and Minerals, water
+def process_folder(folder_name,header_row=1,end_year=2018):
+    files = os.listdir('../data/'+ folder_name)
+    if folder_name!="Air and Climate":
+        header_row = 0
+    if folder_name == "Inland Water Resources":
+        end_year = 2017
+    print(files)
+    for file in files:
+        if ".csv" in file:
+            make_relative_data(folder_name,file,header_row,end_year)
+
+#process_folder("Air and Climate")
+process_folder("Air and Climate")
