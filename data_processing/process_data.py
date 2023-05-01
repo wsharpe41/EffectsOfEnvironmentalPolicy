@@ -4,7 +4,7 @@ import os
 # Print all columns
 pd.set_option('display.max_columns', None)
 
-def make_relative_data(category, file_name,header_row=1,end_year=2018):
+def make_relative_data(category, file_name,header_row=0,end_year=2017):
     treaties = [
         "Basel Convention",
         "CITES",
@@ -29,7 +29,7 @@ def make_relative_data(category, file_name,header_row=1,end_year=2018):
     file = next((f for f in files if file_name in f), None)
     if file is None:
         raise ValueError(f"No file found matching {file_name}")
-    
+
     # Read in file into a dataframe with the first row as the column names
     climate_data = pd.read_csv(f'../data/{category}/{file}', header=header_row)
     climate_data.columns.values[0] = "Country ID"
@@ -42,7 +42,7 @@ def make_relative_data(category, file_name,header_row=1,end_year=2018):
     # Merge climate data with treaty data on Country column
     climate_data = pd.merge(climate_data, treaty_data, on='Country', how='left')
 
-    for year in range(1990, end_year+1):
+    for year in range(2000, end_year+1):
         # Make column type float
         # Convert values of "..." to NaN
         climate_data[str(year)] = climate_data[str(year)].replace('...', None)
@@ -53,17 +53,16 @@ def make_relative_data(category, file_name,header_row=1,end_year=2018):
         
 
     # ADD INTERPOLATION HERE
-    for year in range(1990, end_year):
+    for year in range(2000, end_year):
         climate_data[f"{year} Percent Change"] = (climate_data[str(year+1)] - climate_data[str(year)]) / climate_data[str(year)] * 100
     
     # Write to csv
     climate_data.to_csv(f'../data/{category}/{file_name[:-4]}_processed.csv', index=False)   
-    print(climate_data.head())
     return climate_data
 
 
 # This should work for Air and Climate, some Energy and Minerals, water
-def process_folder(folder_name,header_row=1,end_year=2018):
+def process_folder(folder_name,header_row=0,end_year=2017):
     files = os.listdir('../data/'+ folder_name)
     if folder_name!="Air and Climate":
         header_row = 0
@@ -71,8 +70,19 @@ def process_folder(folder_name,header_row=1,end_year=2018):
         end_year = 2017
     print(files)
     for file in files:
+        print(file)
         if ".csv" in file:
+            if "Freshwater abstracted as proportion of renewable freshwater resources" in file:
+                continue
+            if "Water resources.csv" in file:
+                continue
+            if "_processed" in file:
+                continue
+            if "Wastewater generation and treatment.csv" in file:
+                continue
+            if "Public Water Supply.csv" in file:
+                continue
             make_relative_data(folder_name,file,header_row,end_year)
 
 #process_folder("Air and Climate")
-process_folder("Air and Climate")
+process_folder("Inland Water Resources")
