@@ -15,7 +15,26 @@ def index():
 def CH4():
     return render_template('home_page.html', tableau_file = 'CH4.html')
 
+@app.route('/Basel')
+def Basel():
+    return render_template('home_page.html', tableau_file = 'Basel.html')
 
+@app.route('/Desert')
+def Desert():
+    return render_template('home_page.html', tableau_file = 'Desert.html')
+
+@app.route('/Heritage')
+def Heritage():
+    return render_template('home_page.html', tableau_file = 'Heritage.html')
+
+@app.route('/Paris')
+def Paris():
+    return render_template('home_page.html', tableau_file = 'Paris.html')
+
+@app.route('/UNFCCC')
+def UNFCCC():
+    return render_template('home_page.html', tableau_file = 'UNFCCC.html')
+    
 # start the server
 if __name__ == '__main__':
     app.run(debug=True, port = 5000)
