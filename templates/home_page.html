@@ -16,8 +16,10 @@
 			align-items: center;
 			background-color: #C5E4C2;
 			color: #0F5E00;
-			height: 60px;
 			padding-left: 20px;
+		}
+		header h1:hover {
+			color: #003602;
 		}
 		header img {
 			height: 40px;
@@ -27,94 +29,91 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			margin-top: 50px;
+			margin-top: 0px;
 		}
-		main h1 {
-			font-size: 36px;
-			margin-bottom: 20px;
-		}
-		main img {
+
+		.parallel_layout {
 			width: 80%;
-			max-width: 800px;
-			margin-bottom: 20px;
-		}
-		main button {
+			text-align: center;
+  		}
+		.parallel_layout a {
+			text-decoration: none;
+			font-size: 24px;
+  		}     
+		.protocol {
 			background-color: #C5E4C2; /* Green */
-  			border: none;
-  			color: #0F5E00;
-  			padding: 15px 32px;
-  			text-align: center;
-  			text-decoration: none;
-  			display: inline-block;
-  			font-size: 16px;
-  			margin-bottom: 20px;
-  			cursor:pointer
+  			color: #7e9d78;
+  			transition: none;
+  			display:inline-block;
+  			width:200px;
+  			height:40px;
+  			line-height:40px;
+  			border:0px solid #7e9d78;
+  			text-transform: capitalize;
+  			border-radius:0px;
+  			margin:0px;
+  			position:relative;
+  			overflow:hidden;
+			padding: 2px;
   		}
-  		main button:hover {
-  			background-color:#3e8e41
-  		}
-        main .btn_dropdown {
-            color: #0F5E00;
-            text-align: center;
-            display: inline-block;
-            padding: 15px 40px;
-            cursor: pointer;
-            letter-spacing: 2px;
-            position:relative;
-            overflow:hidden;
-            font-size: 16px;
-            margin: 0 20px
-        }
+		.protocol:hover {
+			color: #0F5E00;
+		}
+  		.protocol:before{
+			transition: all 0.3s ease-in-out;
+			content: attr(value);
+			display:block; 
+		}
 
-        main .btn_dropdown:before {
-            content: "";
-            position: absolute;
-            width: 0;
-            background : #0F5E00;
-            left: 45%;
-            height: 2px;
-            top: 0;
-            transition: all .3s;
-            opacity: 0.7;
-        }
 
-        main .btn_dropdown:hover:before {
-            width: 100%;
-            left:0;
-        }
+		.protocol:after{
+  			transition: all 0.3s ease-in-out;
+			content:"";
+			width:200px;
+			left:0px;
+			top:0px;
+			position:absolute;
+			height:40px;
+			border-left:2px solid #7e9d78;
+		}
+		.protocol:after{
+			content:"";
+			width:200px;
+			left:0px;
+			top:0px;
+			position:absolute;
+			height:40px;
+			border-right:2px solid #7e9d78;
+		}
+		.protocol:after{
+			content:"";
+			width:200px;
+			left:0px;
+			top:0px;
+			position:absolute;
+			height:40px;
+			border-top:2px solid #7e9d78;
+		}
+		.protocol:after{
+			content:"";
+			width:200px;
+			left:0px;
+			top:0px;
+			position:absolute;
+			height:40px;
+			border-bottom:2px solid #7e9d78;
+		}
 
-  		main .dropdown {
-  			position:relative
-  		}
-  		main .dropdown-content {
-  			display:none; 
-  			position:absolute; 
-  			z-index:1; 
-  			min-width:auto; 
-  			right: 70px; 
-  			background-color:#C5E4C2; 
-  			border-radius:.25rem; 
-            border: 2px solid #0F5E00;
-  			padding:.5rem
-  		}
-  		main .dropdown:hover .dropdown-content {
-  			display:block
-  		}
-  		main .dropdown-content a {
-  			color:#0F5E00; 
-  			display:block; 
-  			padding:1rem .5rem; 
-  			text-decoration:none
-  		}
-  		main .dropdown-content a:hover {
-  			background-color:#BCDCBA
-  		}
+		.protocol:hover:after{ 
+			margin-left:100px;
+			margin-top:20px;
+			width:0px;
+			height:0px;
+			border:1px solid rgba(255, 255, 255, 0);  
+		}
+
         
-        main .parallel_layout {
-  			display: flex;
-  			flex-direction: row;
-  			justify-content: center;
-  		}          
+     
         
         footer{
             position: fixed;
@@ -125,14 +124,55 @@
 			color: #0F5E00;
 			text-align: center;
         }
+
 		div.tableau {
-			height: calc(100vh - 240px);
-			display: flex;
+			width: 70%;
+			margin-left: 15%;
 			justify-content: center;
 			align-items: center;
+			max-height: none;
+			height: 40cm;
+			padding: 100px;
+			padding-top: 0px;
 		}
-		
-  		
+		div.tableau img {
+			display: block;
+  			margin-left: auto;
+  			margin-right: auto;
+  			width: 50%;
+			text-align: center;
+		}
+		div.tableau h1 {
+			color: #0F5E00;
+		}
+		div.tableau p {
+			color: #4b4b4b;
+		}
+
+		div.climate-change {
+    		vertical-align: top;
+    		display: inline-block;
+    		text-align: center;
+			margin-left: -15%;
+		}
+		div.climate-change img {
+    		width: 60%;
+			margin-bottom: -50px;
+		}
+		div.climate-change h2 {
+			margin-top: 0px;
+			margin-bottom: 0px;
+			color: #4b4b4b;
+		}
+		div.climate-change a {
+			text-decoration:none;
+    		display: block;
+			color: #3e8e41;
+		}
+		div.climate-change a:hover {
+			color: #0F5E00;
+		}
+
 
 		
 		
@@ -147,8 +187,8 @@
 </style>
 
 <script>
-	function addCh4() {
-		window.location.href = window.location.href.replace(/\/[^\/]*$/, "/CH4");
+	function addKyoto() {
+		window.location.href = window.location.href.replace(/\/[^\/]*$/, "/Kyoto");
 	}
 	function addBasel() {
 		window.location.href = window.location.href.replace(/\/[^\/]*$/, "/Basel");
@@ -174,40 +214,33 @@
 <body>
 <header>
 <img src=".\static\logo.png" alt="EcoData logo" onclick="home()">
-<h1 onclick="home()">EcoData</h1>
+<h1 onclick="home()" href="#" class="group_name">EcoData</h1>
 </header>
 
 <main>
-    <div class="parallel_layout">	
-		<div class="button">
-			<button onclick="addCh4()">Kyoto Protocol</button>
-		</div>
-        <div class="button">
-			<button onclick="addParis()">Paris Agreement</button>
-		</div>
-		<div class="button">
-			<button onclick="addBasel()">Basel Convention</button>
-		</div>
-		<div class="button">
-			<button onclick="addDesert()">UN Desertification</button>
-		</div>
-		<div class="button">
-			<button onclick="addHeritage()">World Heritage</button>
-		</div>
-		<div class="button">
-			<button onclick="addUNFCCC()">UNFCCC</button>
-		</div>
-    </div>
-<br>
+    <section class="parallel_layout">	
+		<a class="protocol" href="#" onclick="addKyoto()" value="Kyoto Protocol"></a>
+		<a class="protocol" href="#" onclick="addParis()" value="Paris Agreement"></a>
+		<a class="protocol" href="#" onclick="addBasel()" value="Basel Convention"></a>
+		<a class="protocol" href="#" onclick="addDesert()" value="UN Desertification"></a>
+		<a class="protocol" href="#" onclick="addHeritage()" value="World Heritage"></a>
+		<a class="protocol" href="#" onclick="addUNFCCC()" value="UNFCCC"></a>
+    </section>
 
-<div class="tableau">
-	{% if tableau_file %}
-		{% include tableau_file %}
-	{% else %}
-		<img src="https://via.placeholder.com/800x400.png?text=World+Map" alt="World Map">
-	{% endif %}
 
-</div>
+	<div class="tableau">
+		{% if tableau_file %}
+			{% include tableau_file %}
+		{% else %}
+			<div class="climate-change">
+				<img src=".\static\climate-change.png" alt="World Map">
+				<h2>“Climate change is the greatest threat to global health in the 21st century”</h2><br>
+				<a href="https://www.rubiconline.com/environmental-forecast-predicts-increased-climate-change/#">Infographic Illustration: Jasper Green</a>
+			</div>
+		{% endif %}
+
+	</div>
+	
 
 </main>
 
