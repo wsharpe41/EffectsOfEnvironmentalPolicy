@@ -11,9 +11,9 @@ def index():
     return render_template('home_page.html')
 
 
-@app.route('/CH4')
+@app.route('/Kyoto')
 def CH4():
-    return render_template('home_page.html', tableau_file = 'CH4.html')
+    return render_template('home_page.html', tableau_file = 'Kyoto.html')
 
 @app.route('/Basel')
 def Basel():
